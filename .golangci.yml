@@ -180,4 +180,4 @@ formatters:
   settings:
     goimports:
       local-prefixes:
-        - github.com/osteele/liquid
+        - github.com/joaqu1m/liquid

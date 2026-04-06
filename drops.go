@@ -1,6 +1,6 @@
 package liquid
 
-import "github.com/osteele/liquid/values"
+import "github.com/joaqu1m/liquid/values"
 
 // Drop indicates that the object will present to templates as its ToLiquid value.
 type Drop interface {

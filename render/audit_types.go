@@ -1,6 +1,6 @@
 package render
 
-import "github.com/osteele/liquid/parser"
+import "github.com/joaqu1m/liquid/parser"
 
 // FilterStep records a single filter application during expression evaluation.
 // Used internally by the render layer and re-exported by the liquid package.
@@ -29,7 +29,7 @@ type AuditConditionNode struct {
 
 // AuditGroup represents a logical and/or operator with its operands.
 type AuditGroup struct {
-	Operator string               // "and" | "or"
+	Operator string // "and" | "or"
 	Result   bool
 	Items    []AuditConditionNode // sub-nodes (comparisons and nested groups)
 }

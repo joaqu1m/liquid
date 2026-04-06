@@ -8,7 +8,7 @@ import (
 	"fmt"
 	__yyfmt__ "fmt"
 
-	"github.com/osteele/liquid/values"
+	"github.com/joaqu1m/liquid/values"
 ) //line expressions.y:3
 
 func init() {

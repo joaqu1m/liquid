@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"io"
 
-	"github.com/osteele/liquid/parser"
-	"github.com/osteele/liquid/render"
+	"github.com/joaqu1m/liquid/parser"
+	"github.com/joaqu1m/liquid/render"
 )
 
 // A Template is a compiled Liquid template. It knows how to evaluate itself within a variable binding environment, to create a rendered byte slice.

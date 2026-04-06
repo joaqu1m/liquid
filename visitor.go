@@ -1,8 +1,8 @@
 package liquid
 
 import (
-	"github.com/osteele/liquid/parser"
-	"github.com/osteele/liquid/render"
+	"github.com/joaqu1m/liquid/parser"
+	"github.com/joaqu1m/liquid/render"
 )
 
 // TemplateNodeKind identifies the kind of a node in the template parse tree.

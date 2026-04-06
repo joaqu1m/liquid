@@ -8,7 +8,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/osteele/liquid/values"
+	"github.com/joaqu1m/liquid/values"
 )
 
 var evaluatorTests = []struct {

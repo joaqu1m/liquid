@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/osteele/liquid/render"
+	"github.com/joaqu1m/liquid/render"
 )
 
 func TestGlobalVariableSegments(t *testing.T) {

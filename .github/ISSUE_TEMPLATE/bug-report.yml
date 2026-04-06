@@ -14,7 +14,7 @@ body:
       label: Pre-submission Checklist
       description: Please verify you've completed these steps before submitting
       options:
-        - label: I have searched the [issue list](https://github.com/osteele/liquid/issues) for similar issues
+        - label: I have searched the [issue list](https://github.com/joaqu1m/liquid/issues) for similar issues
           required: true
         - label: I have tested my example against Shopify Liquid (not required if the issue is a panic or an error where `IsTemplateError` returns false)
           required: false

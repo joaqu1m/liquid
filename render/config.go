@@ -4,7 +4,7 @@ import (
 	"context"
 	"sync"
 
-	"github.com/osteele/liquid/parser"
+	"github.com/joaqu1m/liquid/parser"
 )
 
 // Config holds configuration information for parsing and rendering.

@@ -3,9 +3,9 @@ package liquid
 import (
 	"strings"
 
-	"github.com/osteele/liquid/expressions"
-	"github.com/osteele/liquid/parser"
-	"github.com/osteele/liquid/render"
+	"github.com/joaqu1m/liquid/expressions"
+	"github.com/joaqu1m/liquid/parser"
+	"github.com/joaqu1m/liquid/render"
 )
 
 // VariableSegment is a path to a variable, represented as a slice of string segments.

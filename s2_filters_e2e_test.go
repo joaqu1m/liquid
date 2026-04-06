@@ -29,7 +29,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/osteele/liquid"
+	"github.com/joaqu1m/liquid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

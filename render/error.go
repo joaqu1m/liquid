@@ -3,7 +3,7 @@ package render
 import (
 	"fmt"
 
-	"github.com/osteele/liquid/parser"
+	"github.com/joaqu1m/liquid/parser"
 )
 
 // An Error is an error during template rendering.

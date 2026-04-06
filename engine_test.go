@@ -10,9 +10,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/osteele/liquid/filters"
-	"github.com/osteele/liquid/parser"
-	"github.com/osteele/liquid/render"
+	"github.com/joaqu1m/liquid/filters"
+	"github.com/joaqu1m/liquid/parser"
+	"github.com/joaqu1m/liquid/render"
 
 	"github.com/stretchr/testify/require"
 )

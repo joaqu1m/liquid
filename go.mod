@@ -1,4 +1,4 @@
-module github.com/osteele/liquid
+module github.com/joaqu1m/liquid
 
 go 1.25.0
 

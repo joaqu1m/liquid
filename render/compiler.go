@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/osteele/liquid/parser"
+	"github.com/joaqu1m/liquid/parser"
 )
 
 // Compile parses a source template. It returns an AST root, that can be evaluated.

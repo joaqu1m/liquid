@@ -9,9 +9,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/osteele/liquid/parser"
+	"github.com/joaqu1m/liquid/parser"
 
-	"github.com/osteele/liquid/values"
+	"github.com/joaqu1m/liquid/values"
 )
 
 // sizeLimitWriter wraps an io.Writer and stops writing once the byte limit is reached.

@@ -36,9 +36,9 @@ generator.
 
 ## Installation
 
-`go get github.com/osteele/liquid` # latest version
+`go get github.com/joaqu1m/liquid` # latest version
 
-`go get -u github.com/osteele/liquid` # development version
+`go get -u github.com/joaqu1m/liquid` # development version
 
 ## Usage
 
@@ -97,7 +97,7 @@ out, _ := engine.ParseAndRenderString(template, bindings)
 
 ### Command-Line tool
 
-`go install github.com/osteele/liquid/cmd/liquid@latest` installs a command-line
+`go install github.com/joaqu1m/liquid/cmd/liquid@latest` installs a command-line
 `liquid` executable. This is intended to make it easier to create test cases for
 bug reports.
 
@@ -168,7 +168,7 @@ This section provides a comprehensive guide to using and extending the Liquid te
 These features of Shopify Liquid aren't implemented:
 
 - Filter keyword parameters, for example `{{ image | img_url: '580x', scale: 2
-  }}`. [[Issue #42](https://github.com/osteele/liquid/issues/42)]
+  }}`. [[Issue #42](https://github.com/joaqu1m/liquid/issues/42)]
 - Warn and lax [error modes](https://github.com/shopify/liquid#error-modes).
   - Note: `Engine.LaxFilters()` enables Shopify-compatible behavior for undefined filters (silently pass through).
 
@@ -178,7 +178,7 @@ Drops have a different design from the Shopify (Ruby) implementation. A Ruby
 drop sets `liquid_attributes` to a list of attributes that are exposed to
 Liquid. A Go drop implements `ToLiquid() any`, that returns a proxy
 object. Conventionally, the proxy is a `map` or `struct` that defines the
-exposed properties. See <http://godoc.org/github.com/osteele/liquid#Drop> for
+exposed properties. See <http://godoc.org/github.com/joaqu1m/liquid#Drop> for
 additional information.
 
 ### Value Types
@@ -303,40 +303,40 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://osteele.com/"><img src="https://avatars2.githubusercontent.com/u/674?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Oliver Steele</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=osteele" title="Code">💻</a> <a href="https://github.com/osteele/liquid/commits?author=osteele" title="Documentation">📖</a> <a href="#ideas-osteele" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-osteele" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/osteele/liquid/pulls?q=is%3Apr+reviewed-by%3Aosteele" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/osteele/liquid/commits?author=osteele" title="Tests">⚠️</a></td>
-    <td align="center"><a href="https://github.com/thessem"><img src="https://avatars0.githubusercontent.com/u/973593?v=4?s=100" width="100px;" alt=""/><br /><sub><b>James Littlejohn</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=thessem" title="Code">💻</a> <a href="https://github.com/osteele/liquid/commits?author=thessem" title="Documentation">📖</a> <a href="https://github.com/osteele/liquid/commits?author=thessem" title="Tests">⚠️</a></td>
-    <td align="center"><a href="http://nosmileface.ru"><img src="https://avatars2.githubusercontent.com/u/12567?v=4?s=100" width="100px;" alt=""/><br /><sub><b>nsf</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=nsf" title="Code">💻</a> <a href="https://github.com/osteele/liquid/commits?author=nsf" title="Tests">⚠️</a></td>
-    <td align="center"><a href="https://tobias.salzmann.berlin/"><img src="https://avatars.githubusercontent.com/u/796084?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Tobias Salzmann</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=Eun" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/bendoerr"><img src="https://avatars.githubusercontent.com/u/253068?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ben Doerr</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=bendoerr" title="Code">💻</a></td>
-    <td align="center"><a href="https://daniil.it/"><img src="https://avatars.githubusercontent.com/u/7339644?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Daniil Gentili</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=danog" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/carolynvs"><img src="https://avatars.githubusercontent.com/u/1368985?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Carolyn Van Slyck</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=carolynvs" title="Code">💻</a></td>
+    <td align="center"><a href="https://osteele.com/"><img src="https://avatars2.githubusercontent.com/u/674?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Oliver Steele</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=osteele" title="Code">💻</a> <a href="https://github.com/joaqu1m/liquid/commits?author=osteele" title="Documentation">📖</a> <a href="#ideas-osteele" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-osteele" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/joaqu1m/liquid/pulls?q=is%3Apr+reviewed-by%3Aosteele" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/joaqu1m/liquid/commits?author=osteele" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/thessem"><img src="https://avatars0.githubusercontent.com/u/973593?v=4?s=100" width="100px;" alt=""/><br /><sub><b>James Littlejohn</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=thessem" title="Code">💻</a> <a href="https://github.com/joaqu1m/liquid/commits?author=thessem" title="Documentation">📖</a> <a href="https://github.com/joaqu1m/liquid/commits?author=thessem" title="Tests">⚠️</a></td>
+    <td align="center"><a href="http://nosmileface.ru"><img src="https://avatars2.githubusercontent.com/u/12567?v=4?s=100" width="100px;" alt=""/><br /><sub><b>nsf</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=nsf" title="Code">💻</a> <a href="https://github.com/joaqu1m/liquid/commits?author=nsf" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://tobias.salzmann.berlin/"><img src="https://avatars.githubusercontent.com/u/796084?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Tobias Salzmann</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=Eun" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/bendoerr"><img src="https://avatars.githubusercontent.com/u/253068?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ben Doerr</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=bendoerr" title="Code">💻</a></td>
+    <td align="center"><a href="https://daniil.it/"><img src="https://avatars.githubusercontent.com/u/7339644?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Daniil Gentili</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=danog" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/carolynvs"><img src="https://avatars.githubusercontent.com/u/1368985?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Carolyn Van Slyck</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=carolynvs" title="Code">💻</a></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://github.com/kke"><img src="https://avatars.githubusercontent.com/u/224971?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Kimmo Lehto</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=kke" title="Code">💻</a></td>
-    <td align="center"><a href="https://vito.io/"><img src="https://avatars.githubusercontent.com/u/77198?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Victor "Vito" Gama</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=heyvito" title="Code">💻</a></td>
-    <td align="center"><a href="https://utpal.io/"><img src="https://avatars.githubusercontent.com/u/19898129?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Utpal Sarkar</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=uksarkar" title="Code">💻</a> <a href="https://github.com/osteele/liquid/commits?author=uksarkar" title="Tests">⚠️</a></td>
-    <td align="center"><a href="https://github.com/imiskolee"><img src="https://avatars.githubusercontent.com/u/1549948?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Misko Lee</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=imiskolee" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/aisbergg"><img src="https://avatars.githubusercontent.com/u/14318942?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Andre Lehmann</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=aisbergg" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/jamesog"><img src="https://avatars.githubusercontent.com/u/982184?v=4?s=100" width="100px;" alt=""/><br /><sub><b>James O'Gorman</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=jamesog" title="Code">💻</a> <a href="https://github.com/osteele/liquid/issues?q=author%3Ajamesog" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="https://github.com/ofavre"><img src="https://avatars.githubusercontent.com/u/95129?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Olivier Favre</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=ofavre" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/kke"><img src="https://avatars.githubusercontent.com/u/224971?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Kimmo Lehto</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=kke" title="Code">💻</a></td>
+    <td align="center"><a href="https://vito.io/"><img src="https://avatars.githubusercontent.com/u/77198?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Victor "Vito" Gama</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=heyvito" title="Code">💻</a></td>
+    <td align="center"><a href="https://utpal.io/"><img src="https://avatars.githubusercontent.com/u/19898129?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Utpal Sarkar</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=uksarkar" title="Code">💻</a> <a href="https://github.com/joaqu1m/liquid/commits?author=uksarkar" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/imiskolee"><img src="https://avatars.githubusercontent.com/u/1549948?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Misko Lee</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=imiskolee" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/aisbergg"><img src="https://avatars.githubusercontent.com/u/14318942?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Andre Lehmann</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=aisbergg" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/jamesog"><img src="https://avatars.githubusercontent.com/u/982184?v=4?s=100" width="100px;" alt=""/><br /><sub><b>James O'Gorman</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=jamesog" title="Code">💻</a> <a href="https://github.com/joaqu1m/liquid/issues?q=author%3Ajamesog" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/ofavre"><img src="https://avatars.githubusercontent.com/u/95129?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Olivier Favre</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=ofavre" title="Code">💻</a></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://github.com/peteraba"><img src="https://avatars.githubusercontent.com/u/1675360?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Peter Aba</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=peteraba" title="Documentation">📖</a></td>
-    <td align="center"><a href="https://github.com/chrisghill"><img src="https://avatars.githubusercontent.com/u/15616541?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Christopher Hill</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=chrisghill" title="Code">💻</a> <a href="https://github.com/osteele/liquid/issues?q=author%3Achrisghill" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="https://github.com/wttw"><img src="https://avatars.githubusercontent.com/u/389596?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Steve Atkins</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=wttw" title="Code">💻</a> <a href="https://github.com/osteele/liquid/issues?q=author%3Awttw" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="https://github.com/prestonprice57"><img src="https://avatars.githubusercontent.com/u/10774823?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Preston Price</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=prestonprice57" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/jamslinger"><img src="https://avatars.githubusercontent.com/u/80337165?v=4?s=100" width="100px;" alt=""/><br /><sub><b>jamslinger</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=jamslinger" title="Code">💻</a> <a href="https://github.com/osteele/liquid/issues?q=author%3Ajamslinger" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="https://github.com/deining"><img src="https://avatars.githubusercontent.com/u/18169566?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Andreas Deininger</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=deining" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/magiusdarrigo"><img src="https://avatars.githubusercontent.com/u/43056803?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Matteo Agius-D'Arrigo</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=magiusdarrigo" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/peteraba"><img src="https://avatars.githubusercontent.com/u/1675360?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Peter Aba</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=peteraba" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/chrisghill"><img src="https://avatars.githubusercontent.com/u/15616541?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Christopher Hill</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=chrisghill" title="Code">💻</a> <a href="https://github.com/joaqu1m/liquid/issues?q=author%3Achrisghill" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/wttw"><img src="https://avatars.githubusercontent.com/u/389596?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Steve Atkins</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=wttw" title="Code">💻</a> <a href="https://github.com/joaqu1m/liquid/issues?q=author%3Awttw" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/prestonprice57"><img src="https://avatars.githubusercontent.com/u/10774823?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Preston Price</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=prestonprice57" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/jamslinger"><img src="https://avatars.githubusercontent.com/u/80337165?v=4?s=100" width="100px;" alt=""/><br /><sub><b>jamslinger</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=jamslinger" title="Code">💻</a> <a href="https://github.com/joaqu1m/liquid/issues?q=author%3Ajamslinger" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/deining"><img src="https://avatars.githubusercontent.com/u/18169566?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Andreas Deininger</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=deining" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/magiusdarrigo"><img src="https://avatars.githubusercontent.com/u/43056803?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Matteo Agius-D'Arrigo</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=magiusdarrigo" title="Code">💻</a></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://github.com/codykrieger"><img src="https://avatars.githubusercontent.com/u/1311179?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Cody Krieger</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=codykrieger" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/stephanejais"><img src="https://avatars.githubusercontent.com/u/822431?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Stéphane JAIS</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=stephanejais" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/jam3sn"><img src="https://avatars.githubusercontent.com/u/7646700?v=4?s=100" width="100px;" alt=""/><br /><sub><b>James Newman</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=jam3sn" title="Code">💻</a> <a href="https://github.com/osteele/liquid/issues?q=author%3Ajam3sn" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="https://github.com/chrisatbd"><img src="https://avatars.githubusercontent.com/u/180913248?v=4?s=100" width="100px;" alt=""/><br /><sub><b>chris</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=chrisatbd" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/dop251"><img src="https://avatars.githubusercontent.com/u/995021?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Dmitry Panov</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=dop251" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/GauthierHacout"><img src="https://avatars.githubusercontent.com/u/71611631?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Gauthier Hacout</b></sub></a><br /><a href="https://github.com/osteele/liquid/issues?q=author%3AGauthierHacout" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="https://github.com/jaime-amate"><img src="https://avatars.githubusercontent.com/u/16927375?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jaime Amate</b></sub></a><br /><a href="https://github.com/osteele/liquid/commits?author=jaime-amate" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/codykrieger"><img src="https://avatars.githubusercontent.com/u/1311179?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Cody Krieger</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=codykrieger" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/stephanejais"><img src="https://avatars.githubusercontent.com/u/822431?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Stéphane JAIS</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=stephanejais" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/jam3sn"><img src="https://avatars.githubusercontent.com/u/7646700?v=4?s=100" width="100px;" alt=""/><br /><sub><b>James Newman</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=jam3sn" title="Code">💻</a> <a href="https://github.com/joaqu1m/liquid/issues?q=author%3Ajam3sn" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/chrisatbd"><img src="https://avatars.githubusercontent.com/u/180913248?v=4?s=100" width="100px;" alt=""/><br /><sub><b>chris</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=chrisatbd" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/dop251"><img src="https://avatars.githubusercontent.com/u/995021?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Dmitry Panov</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=dop251" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/GauthierHacout"><img src="https://avatars.githubusercontent.com/u/71611631?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Gauthier Hacout</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/issues?q=author%3AGauthierHacout" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/jaime-amate"><img src="https://avatars.githubusercontent.com/u/16927375?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jaime Amate</b></sub></a><br /><a href="https://github.com/joaqu1m/liquid/commits?author=jaime-amate" title="Code">💻</a></td>
   </tr>
 </table>
 
@@ -382,17 +382,17 @@ and filter test cases are taken directly from the Liquid documentation.
 
 MIT License
 
-[go-url]: https://github.com/osteele/liquid/actions?query=workflow%3A%22Build+Status%22
-[go-svg]: https://github.com/osteele/liquid/actions/workflows/go.yml/badge.svg
+[go-url]: https://github.com/joaqu1m/liquid/actions?query=workflow%3A%22Build+Status%22
+[go-svg]: https://github.com/joaqu1m/liquid/actions/workflows/go.yml/badge.svg
 
-[golangci-lint-url]: https://github.com/osteele/liquid/actions?query=workflow%3Lint
-[golangci-lint-svg]: https://github.com/osteele/liquid/actions/workflows/golangci-lint.yml/badge.svg
+[golangci-lint-url]: https://github.com/joaqu1m/liquid/actions?query=workflow%3Lint
+[golangci-lint-svg]: https://github.com/joaqu1m/liquid/actions/workflows/golangci-lint.yml/badge.svg
 
-[godoc-url]: https://godoc.org/github.com/osteele/liquid
-[godoc-svg]: https://godoc.org/github.com/osteele/liquid?status.svg
+[godoc-url]: https://godoc.org/github.com/joaqu1m/liquid
+[godoc-svg]: https://godoc.org/github.com/joaqu1m/liquid?status.svg
 
-[license-url]: https://github.com/osteele/liquid/blob/master/LICENSE
+[license-url]: https://github.com/joaqu1m/liquid/blob/master/LICENSE
 [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
 
-[go-report-card-url]: https://goreportcard.com/report/github.com/osteele/liquid
-[go-report-card-svg]: https://goreportcard.com/badge/github.com/osteele/liquid
+[go-report-card-url]: https://goreportcard.com/report/github.com/joaqu1m/liquid
+[go-report-card-svg]: https://goreportcard.com/badge/github.com/joaqu1m/liquid

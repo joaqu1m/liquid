@@ -8,7 +8,7 @@ import (
 	"runtime/debug"
 	"sync"
 
-	"github.com/osteele/liquid/values"
+	"github.com/joaqu1m/liquid/values"
 )
 
 // TODO Expression and Closure are confusing names.

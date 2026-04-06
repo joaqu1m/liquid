@@ -1,6 +1,6 @@
 # Loop Modifier Semantics Investigation
 
-**Issue:** https://github.com/osteele/liquid/issues/6
+**Issue:** https://github.com/joaqu1m/liquid/issues/6
 
 **Question:** Do the loop modifiers `reversed`, `limit`, and `offset` depend on the order they're specified in the template?
 
@@ -15,7 +15,7 @@
   - `reversed` keyword only works when placed BEFORE named parameters (`limit:` and `offset:`)
   - When `reversed` comes after named parameters, it is ignored
 
-- **Go osteele/liquid Implementation:**
+- **Go joaqu1m/liquid Implementation:**
   - Syntax order does NOT matter
   - Modifiers are always applied in fixed order: `reversed` → `offset` → `limit`
   - All modifiers work regardless of their position in the syntax
@@ -63,7 +63,7 @@ This explains the different results:
   2. reversed=false (keyword not recognized): no reversal
   3. Result: `12`
 
-### Go osteele/liquid Behavior
+### Go joaqu1m/liquid Behavior
 
 The Go implementation (in `tags/iteration_tags.go:225-263`):
 

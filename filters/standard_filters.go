@@ -18,8 +18,8 @@ import (
 
 	"github.com/osteele/tuesday"
 
-	"github.com/osteele/liquid/expressions"
-	"github.com/osteele/liquid/values"
+	"github.com/joaqu1m/liquid/expressions"
+	"github.com/joaqu1m/liquid/values"
 )
 
 // ZeroDivisionError is returned by the divided_by and modulo filters when

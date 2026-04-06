@@ -3,7 +3,7 @@ package liquid_test
 import (
 	"testing"
 
-	"github.com/osteele/liquid"
+	"github.com/joaqu1m/liquid"
 )
 
 // newEngine is a test helper that creates a default Engine.

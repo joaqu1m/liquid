@@ -9,8 +9,8 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/osteele/liquid/parser"
-	"github.com/osteele/liquid/render"
+	"github.com/joaqu1m/liquid/parser"
+	"github.com/joaqu1m/liquid/render"
 )
 
 var includeTestBindings = map[string]any{

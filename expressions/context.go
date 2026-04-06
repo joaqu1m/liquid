@@ -3,7 +3,7 @@ package expressions
 import (
 	"reflect"
 
-	"github.com/osteele/liquid/values"
+	"github.com/joaqu1m/liquid/values"
 )
 
 // Context is the expression evaluation context. It maps variables names to values.

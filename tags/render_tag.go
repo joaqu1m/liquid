@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/osteele/liquid/render"
+	"github.com/joaqu1m/liquid/render"
 )
 
 // makeRenderTag creates the render tag handler.

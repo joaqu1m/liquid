@@ -3,8 +3,8 @@ package render
 import (
 	"strings"
 
-	"github.com/osteele/liquid/expressions"
-	"github.com/osteele/liquid/parser"
+	"github.com/joaqu1m/liquid/expressions"
+	"github.com/joaqu1m/liquid/parser"
 )
 
 // NodeAnalysis holds static analysis metadata for a compiled node.

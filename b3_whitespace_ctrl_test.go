@@ -13,7 +13,7 @@ package liquid_test
 import (
 	"testing"
 
-	"github.com/osteele/liquid"
+	"github.com/joaqu1m/liquid"
 	"github.com/stretchr/testify/require"
 )
 

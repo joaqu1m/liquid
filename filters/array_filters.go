@@ -7,8 +7,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/osteele/liquid/expressions"
-	"github.com/osteele/liquid/values"
+	"github.com/joaqu1m/liquid/expressions"
+	"github.com/joaqu1m/liquid/values"
 )
 
 // getPropertyValue retrieves a property from an item using the values package.

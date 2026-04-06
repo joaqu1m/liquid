@@ -5,10 +5,10 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/osteele/liquid/expressions"
-	"github.com/osteele/liquid/filters"
-	"github.com/osteele/liquid/parser"
-	"github.com/osteele/liquid/render"
+	"github.com/joaqu1m/liquid/expressions"
+	"github.com/joaqu1m/liquid/filters"
+	"github.com/joaqu1m/liquid/parser"
+	"github.com/joaqu1m/liquid/render"
 )
 
 // --------------------------------------------------------------------------
@@ -237,9 +237,9 @@ type CaptureTrace struct {
 // It is always non-nil, even when an error was returned — Output may be partial
 // and Diagnostics explains what happened.
 type AuditResult struct {
-	Output      string            `json:"output"`
+	Output      string       `json:"output"`
 	Expressions []Expression `json:"expressions"`
-	Diagnostics []Diagnostic      `json:"diagnostics"`
+	Diagnostics []Diagnostic `json:"diagnostics"`
 }
 
 // --------------------------------------------------------------------------

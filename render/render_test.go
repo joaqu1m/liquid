@@ -8,11 +8,11 @@ import (
 	"testing"
 	"time"
 
-	e "github.com/osteele/liquid/expressions"
+	e "github.com/joaqu1m/liquid/expressions"
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/osteele/liquid/parser"
+	"github.com/joaqu1m/liquid/parser"
 )
 
 var renderTests = []struct{ in, out string }{

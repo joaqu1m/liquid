@@ -15,7 +15,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/osteele/liquid/expressions"
+	"github.com/joaqu1m/liquid/expressions"
 )
 
 // portedFilterHelper evaluates a Liquid filter expression against the given bindings.

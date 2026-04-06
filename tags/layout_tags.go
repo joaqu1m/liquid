@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/osteele/liquid/expressions"
-	"github.com/osteele/liquid/render"
+	"github.com/joaqu1m/liquid/expressions"
+	"github.com/joaqu1m/liquid/render"
 )
 
 // Register keys used to pass block override data between layout and block tags.

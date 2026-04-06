@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document outlines the security model, guarantees, and limitations of the `osteele/liquid` Go implementation of the Liquid template language. This information is particularly important if you plan to run end-user-supplied templates in production environments.
+This document outlines the security model, guarantees, and limitations of the `joaqu1m/liquid` Go implementation of the Liquid template language. This information is particularly important if you plan to run end-user-supplied templates in production environments.
 
 ## Security Model
 
@@ -132,7 +132,7 @@ import (
     "io"
     "time"
 
-    "github.com/osteele/liquid"
+    "github.com/joaqu1m/liquid"
 )
 
 // CancelWriter wraps an io.Writer with context cancellation support
@@ -522,7 +522,7 @@ Both implementations provide:
 
 If you discover a security vulnerability in this library, please report it by:
 
-1. **Opening a GitHub Issue**: [Create an issue](https://github.com/osteele/liquid/issues/new) with the "security" label
+1. **Opening a GitHub Issue**: [Create an issue](https://github.com/joaqu1m/liquid/issues/new) with the "security" label
    - Provide a detailed description of the vulnerability
    - Include steps to reproduce
    - If possible, provide a proof of concept
@@ -544,7 +544,7 @@ Please include:
 
 ## Version History
 
-- **2025-01-08**: Initial security documentation created (addresses [#35](https://github.com/osteele/liquid/issues/35))
+- **2025-01-08**: Initial security documentation created (addresses [#35](https://github.com/joaqu1m/liquid/issues/35))
   - Added comprehensive comparison with Ruby implementation
   - Documented security guarantees, limitations, and DoS vulnerabilities
   - Provided production deployment recommendations with code examples

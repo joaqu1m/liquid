@@ -3,7 +3,7 @@ package expressions
 import (
 	"strings"
 
-	"github.com/osteele/liquid/values"
+	"github.com/joaqu1m/liquid/values"
 )
 
 // variableCollector accumulates variable paths discovered during expression tracking.

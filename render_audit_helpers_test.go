@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/osteele/liquid"
+	"github.com/joaqu1m/liquid"
 )
 
 // --------------------------------------------------------------------------

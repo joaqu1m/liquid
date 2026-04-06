@@ -15,7 +15,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/osteele/liquid/render"
+	"github.com/joaqu1m/liquid/render"
 	"github.com/stretchr/testify/require"
 )
 

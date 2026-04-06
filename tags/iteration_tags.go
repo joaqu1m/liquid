@@ -12,8 +12,8 @@ import (
 
 	yaml "gopkg.in/yaml.v2"
 
-	"github.com/osteele/liquid/expressions"
-	"github.com/osteele/liquid/render"
+	"github.com/joaqu1m/liquid/expressions"
+	"github.com/joaqu1m/liquid/render"
 )
 
 // offsetContinueRE matches "offset: continue" (with optional whitespace) in a loop arg string.

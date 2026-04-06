@@ -5,9 +5,9 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/osteele/liquid/filters"
-	"github.com/osteele/liquid/render"
-	"github.com/osteele/liquid/tags"
+	"github.com/joaqu1m/liquid/filters"
+	"github.com/joaqu1m/liquid/render"
+	"github.com/joaqu1m/liquid/tags"
 )
 
 // An Engine parses template source into renderable text.
@@ -74,7 +74,7 @@ func (e *Engine) RegisterBlock(name string, td Renderer) {
 //
 // Examples:
 //
-// * https://github.com/osteele/liquid/blob/main/filters/standard_filters.go
+// * https://github.com/joaqu1m/liquid/blob/main/filters/standard_filters.go
 //
 // * https://github.com/osteele/gojekyll/blob/master/filters/filters.go
 func (e *Engine) RegisterFilter(name string, fn any) {

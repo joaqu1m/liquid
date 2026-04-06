@@ -20,8 +20,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/osteele/liquid/expressions"
-	"github.com/osteele/liquid/render"
+	"github.com/joaqu1m/liquid/expressions"
+	"github.com/joaqu1m/liquid/render"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

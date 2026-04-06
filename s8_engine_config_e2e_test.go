@@ -34,8 +34,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/osteele/liquid"
-	"github.com/osteele/liquid/render"
+	"github.com/joaqu1m/liquid"
+	"github.com/joaqu1m/liquid/render"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

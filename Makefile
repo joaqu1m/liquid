@@ -1,4 +1,4 @@
-# Makefile for github.com/osteele/liquid
+# Makefile for github.com/joaqu1m/liquid
 SHELL := /bin/bash
 
 # Go parameters
@@ -192,7 +192,7 @@ pre-commit: fmt lint test ## Run pre-commit checks
 
 .PHONY: list-imports
 list-imports: ## List all imports
-	@$(GOCMD) list -f '{{join .Imports "\n"}}' ./... | grep -v 'github.com/osteele/liquid' | sort | uniq
+	@$(GOCMD) list -f '{{join .Imports "\n"}}' ./... | grep -v 'github.com/joaqu1m/liquid' | sort | uniq
 
 .PHONY: list-todo
 list-todo: ## List all TODO and FIXME comments
