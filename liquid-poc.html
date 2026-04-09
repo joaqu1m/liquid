@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>LiquidJS PoC — testes extensivos</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: monospace; background: #1e1e1e; color: #d4d4d4; padding: 20px; font-size: 13px; }
+    h1 { color: #569cd6; margin-bottom: 16px; font-size: 16px; }
+    .summary { margin-bottom: 20px; font-size: 14px; }
+    .pass-count { color: #4ec9b0; }
+    .fail-count { color: #f44747; }
+    .group { margin-bottom: 24px; }
+    .group-title { color: #c586c0; font-size: 13px; font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid #333; padding-bottom: 4px; }
+    .test { padding: 8px 10px; margin-bottom: 4px; border-radius: 3px; border-left: 3px solid transparent; }
+    .test.pass { border-color: #4ec9b0; background: #1e2d2b; }
+    .test.fail { border-color: #f44747; background: #2d1e1e; }
+    .test-name { font-weight: bold; }
+    .test-name.pass { color: #4ec9b0; }
+    .test-name.fail { color: #f44747; }
+    .test-detail { margin-top: 4px; color: #888; font-size: 12px; }
+    .test-template { color: #ce9178; word-break: break-all; }
+    .test-got { color: #9cdcfe; }
+    .test-error { color: #f44747; margin-top: 4px; }
+    .missing { color: #f44747; }
+    .unexpected { color: #dcdcaa; }
+  </style>
+</head>
+<body>
+  <h1>LiquidJS — extração de variáveis globais</h1>
+  <div class="summary" id="summary">executando...</div>
+  <div id="results"></div>
+
+  <script type="module">
+    import { Liquid } from "https://esm.sh/liquidjs";
+
+    const engine = new Liquid();
+
+    // diagnóstico de versão
+    if (typeof engine.globalFullVariablesSync !== "function") {
+      document.getElementById("summary").innerHTML =
+        `<span style="color:#f44747">globalFullVariablesSync não existe nesta versão.<br>` +
+        `Métodos disponíveis no engine: ${Object.getOwnPropertyNames(Object.getPrototypeOf(engine)).join(", ")}</span>`;
+      throw new Error("versão do LiquidJS incompatível");
+    }
+
+    // ─── helpers ────────────────────────────────────────────────────────────────
+
+    function extractVars(templateStr) {
+      const tpl = engine.parse(templateStr);
+      const segments = engine.globalVariableSegmentsSync(tpl);
+
+      // Cada segmento é um array de partes do caminho.
+      // Parte pode ser: string (prop normal), number (índice), array (chave dinâmica).
+      // Queremos apenas as strings iniciais contíguas — ignoramos tudo após o primeiro
+      // índice numérico ou chave dinâmica, pois vamos buscar o array/objeto inteiro.
+      const seen = new Set();
+      const result = [];
+      for (const path of segments) {
+        const parts = [];
+        for (const seg of path) {
+          if (typeof seg === "string") parts.push(seg);
+          else break; // número ou array (acesso dinâmico) — para aqui
+        }
+        const key = parts.join(".");
+        if (key && !seen.has(key)) {
+          seen.add(key);
+          result.push(key);
+        }
+      }
+      return result;
+    }
+
+    function runTest(test) {
+      let got = [];
+      let error = null;
+      try {
+        got = extractVars(test.template);
+      } catch (e) {
+        error = e.message;
+      }
+
+      const missing    = (test.mustHave    ?? []).filter(v => !got.includes(v));
+      const unexpected = (test.mustNotHave ?? []).filter(v =>  got.includes(v));
+      const pass       = !error && missing.length === 0 && unexpected.length === 0;
+
+      return { ...test, got, missing, unexpected, error, pass };
+    }
+
+    // ─── casos de teste ──────────────────────────────────────────────────────────
+
+    const groups = [
+
+      {
+        name: "01 · Básico — outputs simples",
+        tests: [
+          {
+            name: "variável simples",
+            template: `{{ nome }}`,
+            mustHave: ["nome"],
+          },
+          {
+            name: "propriedade de objeto",
+            template: `{{ customer.email }}`,
+            mustHave: ["customer.email"],
+          },
+          {
+            name: "cadeia longa de propriedades",
+            template: `{{ order.shipping.address.city }}`,
+            mustHave: ["order.shipping.address.city"],
+          },
+          {
+            name: "múltiplas variáveis no mesmo template",
+            template: `{{ customer.first_name }} comprou {{ product.name }} por {{ order.total }}`,
+            mustHave: ["customer.first_name", "product.name", "order.total"],
+          },
+          {
+            name: "acesso por índice numérico — retorna só a raiz",
+            template: `{{ items[0] }}`,
+            mustHave:    ["items"],
+            mustNotHave: ["items[0]"],
+          },
+        ],
+      },
+
+      {
+        name: "02 · Sintaxes malucas de espaçamento",
+        tests: [
+          {
+            name: "sem espaços nenhum",
+            template: `{{customer.email}}`,
+            mustHave: ["customer.email"],
+          },
+          {
+            name: "muitos espaços dos dois lados",
+            template: `{{     customer.email     }}`,
+            mustHave: ["customer.email"],
+          },
+          {
+            name: "tab em vez de espaço",
+            template: `{{\tcustomer.email\t}}`,
+            mustHave: ["customer.email"],
+          },
+          {
+            name: "quebra de linha dentro do output",
+            template: `{{\n  customer.email\n}}`,
+            mustHave: ["customer.email"],
+          },
+          {
+            name: "whitespace control com traço",
+            template: `{{- customer.email -}}`,
+            mustHave: ["customer.email"],
+          },
+          {
+            name: "só traço de abertura",
+            template: `{{- customer.email }}`,
+            mustHave: ["customer.email"],
+          },
+          {
+            name: "só traço de fechamento",
+            template: `{{ customer.email -}}`,
+            mustHave: ["customer.email"],
+          },
+        ],
+      },
+
+      {
+        name: "03 · Filters",
+        tests: [
+          {
+            name: "filter simples",
+            template: `{{ customer.name | upcase }}`,
+            mustHave: ["customer.name"],
+          },
+          {
+            name: "vários filters encadeados",
+            template: `{{ customer.bio | strip_html | truncate: 100 | upcase }}`,
+            mustHave: ["customer.bio"],
+          },
+          {
+            name: "filter com argumento sendo outra variável",
+            template: `{{ customer.name | default: fallback.name }}`,
+            mustHave: ["customer.name", "fallback.name"],
+          },
+          {
+            name: "filter append com variável",
+            template: `{{ product.slug | append: site.base_url }}`,
+            mustHave: ["product.slug", "site.base_url"],
+          },
+          {
+            name: "filter date",
+            template: `{{ order.created_at | date: "%d/%m/%Y" }}`,
+            mustHave: ["order.created_at"],
+          },
+        ],
+      },
+
+      {
+        name: "04 · Tags if / unless / case",
+        tests: [
+          {
+            name: "if simples",
+            template: `{% if customer.active %}ativo{% endif %}`,
+            mustHave: ["customer.active"],
+          },
+          {
+            name: "if com comparação ==",
+            template: `{% if customer.status == "premium" %}ok{% endif %}`,
+            mustHave: ["customer.status"],
+          },
+          {
+            name: "if com espaços absurdos ao redor do operador",
+            template: `{% if    customer.age   >=   18   %}maior{% endif %}`,
+            mustHave: ["customer.age"],
+          },
+          {
+            name: "if / elsif / else",
+            template: `{% if customer.tier == "gold" %}gold{% elsif customer.tier == "silver" %}silver{% else %}free{% endif %}`,
+            mustHave: ["customer.tier"],
+          },
+          {
+            name: "unless",
+            template: `{% unless customer.blocked %}mostrar{% endunless %}`,
+            mustHave: ["customer.blocked"],
+          },
+          {
+            name: "if com contains",
+            template: `{% if customer.tags contains "vip" %}VIP{% endif %}`,
+            mustHave: ["customer.tags"],
+          },
+          {
+            name: "if com and / or",
+            template: `{% if customer.active and customer.verified %}ok{% endif %}`,
+            mustHave: ["customer.active", "customer.verified"],
+          },
+          {
+            name: "if aninhado",
+            template: `{% if order.exists %}{% if order.paid %}pago{% endif %}{% endif %}`,
+            mustHave: ["order.exists", "order.paid"],
+          },
+          {
+            name: "case / when",
+            template: `{% case customer.plan %}{% when "free" %}grátis{% when "pro" %}pago{% endcase %}`,
+            mustHave: ["customer.plan"],
+          },
+        ],
+      },
+
+      {
+        name: "05 · Tags for",
+        // COMPORTAMENTO DA LIB: propriedades de variáveis de loop (item.name, p.title)
+        // são consideradas locais — a lib retorna apenas a coleção (cart.items).
+        // Isso é correto para o nosso use case: quem busca cart.items já tem os sub-campos.
+        tests: [
+          {
+            name: "for simples — só a coleção aparece, props do item são locais",
+            template: `{% for item in cart.items %}{{ item.name }}{% endfor %}`,
+            mustHave:    ["cart.items"],
+            mustNotHave: ["item", "item.name"],
+          },
+          {
+            name: "for com limit e offset — offset externo aparece, props do item não",
+            template: `{% for p in products limit: 5 offset: page.offset %}{{ p.title }}{% endfor %}`,
+            mustHave:    ["products", "page.offset"],
+            mustNotHave: ["p", "p.title"],
+          },
+          {
+            name: "for com forloop.index — forloop é local, item.name é local",
+            template: `{% for item in order.items %}{{ forloop.index }}: {{ item.name }}{% endfor %}`,
+            mustHave:    ["order.items"],
+            mustNotHave: ["item", "item.name", "forloop"],
+          },
+          {
+            name: "for aninhado — só a coleção mais externa aparece",
+            template: `{% for order in customer.orders %}{% for item in order.items %}{{ item.sku }}{% endfor %}{% endfor %}`,
+            mustHave:    ["customer.orders"],
+            mustNotHave: ["order", "item", "order.items", "item.sku"],
+          },
+          {
+            name: "for com break condicional — tudo dentro é local",
+            template: `{% for item in list %}{% if item.stop %}{% break %}{% endif %}{{ item.value }}{% endfor %}`,
+            mustHave:    ["list"],
+            mustNotHave: ["item", "item.stop", "item.value"],
+          },
+        ],
+      },
+
+      {
+        name: "06 · assign / capture",
+        tests: [
+          {
+            name: "assign — variável criada é local, a fonte é global",
+            template: `{% assign full_name = customer.first_name %}{{ full_name }}`,
+            mustHave:    ["customer.first_name"],
+            mustNotHave: ["full_name"],
+          },
+          {
+            name: "assign com filter",
+            template: `{% assign slug = product.title | downcase | replace: ' ', '-' %}{{ slug }}`,
+            mustHave:    ["product.title"],
+            mustNotHave: ["slug"],
+          },
+          {
+            name: "capture — variável capturada é local",
+            template: `{% capture greeting %}Olá, {{ customer.name }}{% endcapture %}{{ greeting }}`,
+            mustHave:    ["customer.name"],
+            mustNotHave: ["greeting"],
+          },
+        ],
+      },
+
+      {
+        name: "07 · Sintaxes disruptivas de analistas de negócios",
+        tests: [
+          {
+            name: "tag if sem espaço após o nome do tag",
+            template: `{%if customer.active%}ok{%endif%}`,
+            mustHave: ["customer.active"],
+          },
+          {
+            name: "tag com whitespace control e sem espaços",
+            template: `{%-if customer.active-%}ok{%-endif-%}`,
+            mustHave: ["customer.active"],
+          },
+          {
+            name: "quebra de linha dentro de tag",
+            template: `{%\n  if\n  customer.active\n%}ok{%\n  endif\n%}`,
+            mustHave: ["customer.active"],
+          },
+          {
+            name: "várias variáveis em linha única separadas por texto",
+            template: `Olá {{customer.first_name}}, seu pedido #{{order.id}} de {{order.total}} chegará em {{order.eta}}.`,
+            mustHave: ["customer.first_name", "order.id", "order.total", "order.eta"],
+          },
+          {
+            name: "template em linha com for+if — só a coleção é global",
+            template: `{% for i in order.items %}{% if i.available %}{{i.name}} - {{i.price}}{% endif %}{% endfor %}`,
+            mustHave:    ["order.items"],
+            mustNotHave: ["i", "i.name", "i.price", "i.available"],
+          },
+          {
+            name: "acesso dinâmico por variável como índice — retorna só raiz de cada um",
+            template: `{{ matrix[row.index][col.key] }}`,
+            // matrix[...][...] → só "matrix"; row.index e col.key são as chaves dinâmicas
+            mustHave:    ["matrix", "row.index", "col.key"],
+            mustNotHave: ["matrix[row.index][col.key]"],
+          },
+          {
+            name: "filter com múltiplos argumentos variáveis",
+            template: `{{ msg.body | replace: search.term, replace.value }}`,
+            mustHave: ["msg.body", "search.term", "replace.value"],
+          },
+          {
+            name: "comparação com variável em ambos os lados",
+            template: `{% if user.role == config.required_role %}ok{% endif %}`,
+            mustHave: ["user.role", "config.required_role"],
+          },
+          {
+            name: "unless com comparação != e espaços irregulares",
+            template: `{%unless   order.status!="cancelado"  %}ativo{%endunless%}`,
+            mustHave: ["order.status"],
+          },
+          {
+            name: "acesso por string literal como chave — equivale a customer.first_name",
+            template: `{{ customer["first_name"] }}`,
+            // ["first_name"] é string, então é tratado como prop normal pelo segmenter
+            mustHave: ["customer.first_name"],
+          },
+        ],
+      },
+
+      {
+        name: "08 · Edge cases perigosos",
+        tests: [
+          {
+            name: "assign + for com mesmo nome — item sempre local, só global.item e list saem",
+            template: `{% assign item = global.item %}{% for item in list %}{{ item.x }}{% endfor %}{{ item }}`,
+            // 'item' é local (assign + for), 'item.x' dentro do for é local também
+            // após o for, {{ item }} usa o valor do assign mas 'item' ainda é local
+            mustHave:    ["global.item", "list"],
+            mustNotHave: ["item", "item.x"],
+          },
+          {
+            name: "template sem nenhuma variável",
+            template: `<p>Texto fixo sem variáveis nenhuma.</p>`,
+            mustHave:    [],
+            mustNotHave: [],
+          },
+          {
+            name: "variável usada só dentro de assign, nunca renderizada",
+            template: `{% assign x = hidden.value %}nada aqui`,
+            mustHave:    ["hidden.value"],
+            mustNotHave: ["x"],
+          },
+          {
+            name: "profundidade extrema de propriedades",
+            template: `{{ a.b.c.d.e.f.g.h }}`,
+            mustHave: ["a.b.c.d.e.f.g.h"],
+          },
+          {
+            name: "variável usada em elsif que nunca executa",
+            template: `{% if false %}{% elsif rarely.used.var %}ok{% endif %}`,
+            mustHave: ["rarely.used.var"],
+          },
+        ],
+      },
+
+    ];
+
+    // ─── runner ──────────────────────────────────────────────────────────────────
+
+    let totalPass = 0;
+    let totalFail = 0;
+    const resultsEl = document.getElementById("results");
+
+    for (const group of groups) {
+      const groupEl = document.createElement("div");
+      groupEl.className = "group";
+
+      const titleEl = document.createElement("div");
+      titleEl.className = "group-title";
+      titleEl.textContent = group.name;
+      groupEl.appendChild(titleEl);
+
+      for (const testDef of group.tests) {
+        const result = runTest(testDef);
+        result.pass ? totalPass++ : totalFail++;
+
+        const testEl = document.createElement("div");
+        testEl.className = `test ${result.pass ? "pass" : "fail"}`;
+
+        const nameEl = document.createElement("div");
+        nameEl.className = `test-name ${result.pass ? "pass" : "fail"}`;
+        nameEl.textContent = `${result.pass ? "✓" : "✗"} ${result.name}`;
+        testEl.appendChild(nameEl);
+
+        const templateEl = document.createElement("div");
+        templateEl.className = "test-detail test-template";
+        templateEl.textContent = `template: ${result.template}`;
+        testEl.appendChild(templateEl);
+
+        const gotEl = document.createElement("div");
+        gotEl.className = "test-detail test-got";
+        gotEl.textContent = `resultado: [${result.got.join(", ")}]`;
+        testEl.appendChild(gotEl);
+
+        if (result.error) {
+          const errEl = document.createElement("div");
+          errEl.className = "test-error";
+          errEl.textContent = `erro: ${result.error}`;
+          testEl.appendChild(errEl);
+        }
+
+        if (result.missing.length > 0) {
+          const el = document.createElement("div");
+          el.className = "test-detail missing";
+          el.textContent = `faltando: [${result.missing.join(", ")}]`;
+          testEl.appendChild(el);
+        }
+
+        if (result.unexpected.length > 0) {
+          const el = document.createElement("div");
+          el.className = "test-detail unexpected";
+          el.textContent = `não deveria ter: [${result.unexpected.join(", ")}]`;
+          testEl.appendChild(el);
+        }
+
+        groupEl.appendChild(testEl);
+
+        // log no console também
+        const prefix = result.pass ? "✓" : "✗";
+        console.log(`${prefix} [${group.name}] ${result.name}`);
+        console.log("  template:", result.template);
+        console.log("  got:     ", result.got);
+        if (!result.pass) {
+          if (result.error)      console.error("  error:", result.error);
+          if (result.missing.length)    console.warn("  faltando:", result.missing);
+          if (result.unexpected.length) console.warn("  não deveria ter:", result.unexpected);
+        }
+      }
+
+      resultsEl.appendChild(groupEl);
+    }
+
+    const summaryEl = document.getElementById("summary");
+    summaryEl.innerHTML =
+      `<span class="pass-count">✓ ${totalPass} passaram</span>  ` +
+      `<span class="fail-count">✗ ${totalFail} falharam</span>  ` +
+      `— total: ${totalPass + totalFail}`;
+
+    console.log(`\n=== RESULTADO FINAL: ${totalPass} ✓  ${totalFail} ✗ ===`);
+  </script>
+</body>
+</html>
